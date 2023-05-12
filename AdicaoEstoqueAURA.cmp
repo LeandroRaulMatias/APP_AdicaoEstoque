@@ -1,0 +1,34 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" access="global" >
+    <!-- criar uma referencia de envio de dados -->
+     <aura:attribute name="pageReference" type="Object" /> 
+    <!-- componente de navegação do aura -->
+     <lightning:navigation aura:id="navService"/> 
+    
+    <!-- Criação do componente visual -->
+    <lightning:card title="Adição Estoque">
+    	<div class="slds-p-around_medium">
+            <!--
+				objectApiName ->>>> determina qual é o objeto alvo do formulário
+				onsubmit -> realiza algum tratamento nos dados antes de realizar o submit
+				onsuccess -> realiza alguma ação após o salvamento
+
+				chamar uma função do controlador
+			 -->
+            <lightning:recordEditForm 
+            	objectApiName="Estoque__c"
+                aura:id="recordEditForm"
+				onsuccess="{!c.handleSuccess}"                      
+            >
+            	<!-- campos da Conta que serão usados no formulário -->
+               <!-- <lightning:inputField fieldName="Name" aura:id="field"/>-->            
+                <lightning:inputField fieldName="Produto__c" aura:id="field"/>
+                <lightning:inputField fieldName="Local__c" aura:id="field"/>
+                    <lightning:inputField fieldName="Quantidade__c" aura:id="field"/>
+                
+                <!-- botão de ação para enviar -->
+                <lightning:button class="slds-m-top_small" onclick="{!c.handleReset}" label="Limpar"/>
+                <lightning:button class="slds-m-top_small" type="submit" variant="brand" label="Adicionar"/>
+            </lightning:recordEditForm>
+        </div>
+    </lightning:card>
+</aura:component>
